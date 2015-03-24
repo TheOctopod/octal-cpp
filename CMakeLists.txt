@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 2.6)
+cmake_policy(SET CMP0048 NEW)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin)
+
+project(octal VERSION 0.1 LANGUAGES CXX)
+
+message(STATUS "CMAKE_GENERATOR : ${CMAKE_GENERATOR}")
+message(STATUS "DESKTOP         : ${DESKTOP}")
+message(STATUS "PRJ             : ${PRJ}")
+message(STATUS "FILELIST        : ${FILELIST}")
+message(STATUS "SYSTEM_NAME     : ${CMAKE_SYSTEM_NAME}")
+
+add_subdirectory(src)
+
+install()
