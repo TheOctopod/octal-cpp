@@ -1,11 +1,10 @@
 
-cmake_minimum_required(VERSION 2.8.5)
+cmake_minimum_required(VERSION 2.8.8)
 
 # Project Name
 # ===============================================
 
-set(PROJECT_NAME "octal")
-project(${PROJECT_NAME} LANGUAGES CXX)
+project(octal LANGUAGES CXX)
 
 # Version 0.1
 # ===============================================
@@ -13,11 +12,18 @@ project(${PROJECT_NAME} LANGUAGES CXX)
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 1)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_HOME_DIRECTORY}")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_HOME_DIRECTORY}")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_HOME_DIRECTORY}/bin")
+set(CMAKE_INSTALL_PREFIX            "${CMAKE_HOME_DIRECTORY}/install")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY  "${CMAKE_HOME_DIRECTORY}/install")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY  "${CMAKE_HOME_DIRECTORY}/install")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  "${CMAKE_HOME_DIRECTORY}/install")
 
-message(STATUS "CMAKE_GENERATOR : ${CMAKE_GENERATOR}")
-message(STATUS "SYSTEM_NAME     : ${CMAKE_SYSTEM_NAME}")
+message("===========================================")
+message("  Pre-build Information")
+message(" ----------------------------------------- ")
+message("  CMAKE Generator  : ${CMAKE_GENERATOR}")
+message("  System Name      : ${CMAKE_SYSTEM_NAME}")
+message("  Binary Directory : ${CMAKE_BINARY_DIR}")
+message("  Source Directory : ${CMAKE_SOURCE_DIR}")
+message("  Install Directory: ${CMAKE_INSTALL_PREFIX}")
 
 add_subdirectory("src")

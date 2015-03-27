@@ -1,30 +1,39 @@
 
 # include() macro
-# stores all arguments in PROJ_INCLUDES variable
+# stores all arguments in ALL_INCLUDES variable
 # ===============================================
 
-macro(add_include)
-	set(ALL_INCLUDES ${ALL_INCLUDES} ${ARGV})
-endmacro(add_include)
+macro(add_sources)
+	foreach(ARG ${ARGN})
+		message("    - ${ARG}")
+	endforeach()
+	set(SRCS ${SRCS} ${ARGV})
+endmacro()
+
+message("===========================================")
+message("  Including Sources")
+message(" -----------------------------------------     ")
 
 # Octal.h Main Header
 # ===============================================
 
-add_include(
+add_sources(
 	"octal.h"
 )
+
 # Vector
 # ===============================================
 
-add_include(
+add_sources(
 	"octal/vector/vector.cpp"
 	"octal/vector/vector.h"
 )
 
-# Install
+# Build
 # ===============================================
 
-message(STATUS "List of included files: ${ALL_INCLUDES}")
-add_library(${PROJECT_NAME} STATIC ${ALL_INCLUDES})
+message("===========================================")
 
-install(TARGETS octal DESTINATION ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
+add_library(${PROJECT_NAME} STATIC ${SRCS})
+
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
