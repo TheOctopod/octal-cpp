@@ -12,7 +12,7 @@ endmacro()
 
 message("===========================================")
 message("  Including Sources")
-message(" -----------------------------------------     ")
+message(" ----------------------------------------- ")
 
 # Octal.h Main Header
 # ===============================================
@@ -36,4 +36,14 @@ message("===========================================")
 
 add_library(${PROJECT_NAME} STATIC ${SRCS})
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
+set_target_properties(
+	${PROJECT_NAME} PROPERTIES
+	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_HOME_DIRECTORY}/lib"
+)
+
+
+install(
+	TARGETS ${PROJECT_NAME} 
+    ARCHIVE 
+    DESTINATION ${CMAKE_INSTALL_PREFIX}
+)
