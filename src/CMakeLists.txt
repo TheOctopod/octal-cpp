@@ -35,15 +35,3 @@ add_sources(
 message("===========================================")
 
 add_library(${PROJECT_NAME} STATIC ${SRCS})
-
-set_target_properties(
-	${PROJECT_NAME} PROPERTIES
-	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_HOME_DIRECTORY}/lib"
-)
-
-
-install(
-	TARGETS ${PROJECT_NAME} 
-    ARCHIVE 
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
-)
