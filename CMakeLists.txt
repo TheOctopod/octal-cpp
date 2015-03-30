@@ -12,9 +12,8 @@ project(octal LANGUAGES CXX)
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 1)
 
-set(CMAKE_BUILD_DIRECTORY           "${CMAKE_HOME_DIRECTORY}/bin")
-
 set(LIB_DIR                         "${CMAKE_HOME_DIRECTORY}/lib")
+set(SRC_DIR                         "${CMAKE_HOME_DIRECTORY}/src")
 
 # for executables
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY  "${LIB_DIR}")
