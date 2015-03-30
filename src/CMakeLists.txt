@@ -35,3 +35,6 @@ add_sources(
 message("===========================================")
 
 add_library(${PROJECT_NAME} STATIC ${SRCS})
+target_include_directories(${PROJECT_NAME}
+	PUBLIC ${SRC_DIR}
+)
