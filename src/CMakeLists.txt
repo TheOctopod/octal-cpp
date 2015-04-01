@@ -3,38 +3,34 @@
 # stores all arguments in ALL_INCLUDES variable
 # ===============================================
 
+set(PROJ_SOURCES "" CACHE INTERNAL "lists")
+
 macro(add_sources)
-	foreach(ARG ${ARGN})
-		message("    - ${ARG}")
-	endforeach()
-	set(SRCS ${SRCS} ${ARGV})
+	set(PROJ_SOURCES ${PROJ_SOURCES} ${ARGV} CACHE INTERNAL "lists")
 endmacro()
 
-message("===========================================")
-message("  Including Sources")
-message(" ----------------------------------------- ")
+set(PROJ_LINKS "" CACHE INTERNAL "lists")
 
-# Octal.h Main Header
-# ===============================================
-
-add_sources(
-	"octal.h"
-)
+macro(add_libs)
+	set(PROJ_SOURCES ${PROJ_SOURCES} ${ARGV} CACHE INTERNAL "lists")
+	foreach(ARG ${ARGN})
+		add_dependencies(${PROJECT_NAME} ${ARG})
+		target_link_libraries(${PROJECT_NAME} ${ARG})
+	endforeach()
+endmacro()
 
 # Vector
 # ===============================================
 
 add_sources(
-	"octal/vector/vector.cpp"
-	"octal/vector/vector.h"
+	"octal/vector.cpp"
 )
 
 # Build
 # ===============================================
 
-message("===========================================")
+add_library(${PROJECT_NAME} STATIC ${PROJ_SOURCES})
 
-add_library(${PROJECT_NAME} STATIC ${SRCS})
 target_include_directories(${PROJECT_NAME}
-	PUBLIC ${SRC_DIR}
+	PRIVATE ${INCLUDE_DIR}
 )

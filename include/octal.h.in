@@ -1,0 +1,8 @@
+#pragma once
+
+#include <string>
+
+namespace octal
+{
+	readonly std::string VERSION = "@VERSION@"; 
+}
