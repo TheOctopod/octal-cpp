@@ -2,23 +2,24 @@
 
 namespace octal
 {
-	class Vector
+	struct Vector
 	{
 	public:
-		/** @brief	Zero: {0, 0, 0} */
+
+		/** 
+		 *	@brief	A zero Vector. (0, 0, 0)
+		 */
 		static const Vector ZERO;
 
-	public:
-		double X;
-		double Y;
-		double Z;
-		double W;
+	private:
 
-		Vector() : X(0), Y(0), Z(0), W(0) { }
-		Vector(double x, double y) : X(x), Y(y), Z(0), W(0) { }
-		Vector(double x, double y, double z) : X(x), Y(y), Z(z), W(0) { }
-		Vector(double x, double y, double z, double w) : X(x), Y(y), Z(z), W(w) { }
+		/**
+		 *	@brief	Constructs a Vector with all the values at 0.
+		 *			Please use Vector::ZERO instead.
+		 */
+		Vector() : X(0), Y(0), Z(0) { }
 
+		bool Equals(Vector other);
 		Vector Add(Vector other);
 		Vector Subtract(Vector other);
 		Vector Multiply(Vector other);
@@ -26,10 +27,27 @@ namespace octal
 		Vector Divide(Vector other);
 		Vector Divide(double x);
 
+	public:
+
+		double X, Y, Z;
+
+		/**
+		 *	@brief	Constructs a Vector with only the X and Y axises set.
+		 *			Usually used to represent a two-dimensional Vector.
+		 */
+		Vector(double x, double y) : X(x), Y(y), Z(0) { }
+		Vector(double x, double y, double z) : X(x), Y(y), Z(z) { }
+
+		/**
+		 *	@brief Returns the magnitude (length) of the vector.
+		 */
 		double Magnitude();
+
+		/**
+		 *	@brief Returns a normalized version of the vector. (magnitude == 1)
+		 */
 		Vector Normalized();
 
-		bool Equals(Vector other);
 		bool operator ==(Vector other)
 		{
 			return Equals(other);
@@ -63,6 +81,11 @@ namespace octal
 		Vector operator /(Vector other)
 		{
 			return Divide(other);
+		}
+
+		Vector operator /(double x)
+		{
+			return Divide(x);
 		}
 	};
 }
